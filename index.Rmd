@@ -6,6 +6,7 @@ load(file=url(link))
 
 library(ggplot2)
 
+#Nathan's Download Speed Box Plots 
 box1 = ggplot(Internet, aes(x= ISP, y = Download.Speed)) 
 
 box2 = box1 + geom_boxplot(color='black',fill='white',
@@ -13,7 +14,7 @@ box2 = box1 + geom_boxplot(color='black',fill='white',
                            outlier.size=2)
 
 box3 = box2 + labs(title='Wave provides higher than average download speeds',
-                   y = 'Download Speed (megabytes/second)',
+                   y = 'Download Speed (Megabytes/Second)',
                    x = NULL,
                    caption = 'Source: Stevenson Business and Organization Internet Survey')
 
@@ -29,6 +30,7 @@ box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
 
 box5 = box4 + scale_y_continuous(breaks=c(0,10,20,30,40,50,60,70,80,90,100),
                                          limits=c(0,100)) + scale_x_discrete(limits=c('Wave','GorgeNet','CenturyLink'))
+
 box6 = box5 + coord_flip() + geom_hline(yintercept = 22.65,
                            linetype="dashed", 
                            size=1,
@@ -38,6 +40,7 @@ box6 + geom_dotplot(binaxis='y', stackdir='center', dotsize=10, binwidth = .1, c
 ```
 
 ```{r}
+#Nathan's Upload Speed Box Plots 
 box1 = ggplot(Internet, aes(x= ISP, y = Upload.Speed)) 
 
 box2 = box1 + geom_boxplot(color='black',fill='white',
@@ -45,7 +48,7 @@ box2 = box1 + geom_boxplot(color='black',fill='white',
                            outlier.size=2)
 
 box3 = box2 + labs(title='Wave provides higher than average upload speeds',
-                   y = 'Upload Speed (megabytes/second)',
+                   y = 'Upload Speed (Megabytes/Second)',
                    x = NULL,
                    caption = 'Source: Stevenson Business and Organization Internet Survey')
 
@@ -70,5 +73,74 @@ box6 + geom_dotplot(binaxis='y', stackdir='center', dotsize=10, binwidth = .1, c
 ```
 
 
+```{r}
+library(ggplot2)
 
+#Kim's Download Speed Box Plots 
+box1 = ggplot(Internet, aes(x= ISP, y = Download.Speed)) 
+
+box2 = box1 + geom_boxplot(color='black',fill='white',
+                           outlier.color='black',outlier.shape=3,
+                           outlier.size=2)
+
+box3 = box2 + labs(title='Wave provides higher than average download speeds',
+                   y = 'Download Speed (Megabytes/Second)',
+                   x = NULL,
+                   caption = 'Source: Stevenson Business and Organization Internet Survey 
+                   Note: Wave Outlier of 500 Mbps Omitteed')
+
+box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
+                    plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=0.5)),
+                    plot.caption=element_text(size=7),
+                    text=element_text(color='gray25'),
+                    panel.background = element_rect(fill='white'),
+                    axis.ticks.y=element_blank(),
+                    axis.line.x=element_line(color='black'))
+
+box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
+                                         limits=c(0,100)) + scale_x_discrete(limits=c('Wave','GorgeNet','CenturyLink'))
+
+box6 = box5 + coord_flip() + geom_hline(yintercept = 22.65,
+                           linetype="dashed", 
+                           size=1,
+                           alpha=0.3)
+
+box6 + geom_dotplot(binaxis='y', stackdir='center', dotsize=6, binwidth = .1, color='red')
+```
+
+```{r}
+#Kim's Upload Speed Box Plots 
+box1 = ggplot(Internet, aes(x= ISP, y = Upload.Speed)) 
+
+box2 = box1 + geom_boxplot(color='black',fill='white',
+                           outlier.color='black',outlier.shape=3,
+                           outlier.size=2)
+
+box3 = box2 + labs(title='Wave provides higher than average upload speeds',
+                   y = 'Upload Speed (Megabytes/Second)',
+                   x = NULL,
+                   caption = 'Source: Stevenson Business and Organization Internet Survey')
+
+box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
+                    plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=0.5)),
+                    plot.caption=element_text(size=7),
+                    text=element_text(color='gray25'),
+                    panel.background = element_rect(fill='white'),
+                    axis.ticks.y=element_blank(),
+                    axis.line.x=element_line(color='black'))
+
+box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
+                                         limits=c(0,100)) + scale_x_discrete(limits=c('Wave','GorgeNet','CenturyLink'))
+
+box6 = box5 + coord_flip() + geom_hline(yintercept = 22.65,
+                           linetype="dashed", 
+                           size=1,
+                           alpha=0.3)
+
+box6 + geom_dotplot(binaxis='y', stackdir='center', dotsize=6, binwidth = .1, color='red')
+```
 
