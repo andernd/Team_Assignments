@@ -224,4 +224,28 @@ box7 = box6 + geom_dotplot(binaxis='y', stackdir='center', dotsize=6, binwidth =
 box7
 ```
 
+```{r}
+#Johnson Download Speeds Box Plots 
+box1 = ggplot(Internet, aes(y=Upload.Speed, x=ISP)) + geom_boxplot(outlier.shape = NA, color = "black",fill = "white") 
+box2 = box1 + scale_y_continuous(breaks=seq(0,100,10), name= "Upload Speeds Measured in MBPS", limits=c(0,100)) +scale_x_discrete(limits=c("Wave","GorgeNet","AT&T"), name = "Internet Service Provider")
+
+box3 = box2 + coord_flip()
+box3 = box3 + geom_dotplot(binaxis='y', stackdir='center', dotsize=10, binwidth = .1, color='blue')
+box4 = box3 + theme(panel.background = element_rect(fill = 'gray95'), plot.title=(element_text(hjust=0.5)), plot.caption=element_text(vjust=0.1))
+box5 = box4 + labs(title = 'Internet Speeds Across WA Providers', caption = 'Source: Stevenson Business and Organization Internet')
+box5
+```
+
+```{r}
+#Johnson Upload Speeds Box Plots 
+box1 = ggplot(Internet, aes(y=Download.Speed, x=ISP)) + geom_boxplot(outlier.shape = NA, color = "black",fill = "white") 
+box2 = box1 + scale_y_continuous(breaks=seq(0,100,10), name= "Download Speeds Measured in MBPS", limits=c(0,100)) +scale_x_discrete(limits=c("Wave","GorgeNet","AT&T"), name = "Internet Service Provider")
+
+box3 = box2 + coord_flip()
+box3 = box3 + geom_dotplot(binaxis='y', stackdir='center', dotsize=10, binwidth = .1, color='blue')
+box4 = box3 + theme(panel.background = element_rect(fill = 'gray95'), plot.title=(element_text(hjust=0.5)), plot.caption=element_text(vjust=0.1))
+box5 = box4 + labs(title = 'Internet Speeds Across WA Providers', caption = 'Source: Stevenson Business and Organization Internet')
+box5
+```
+
 
