@@ -3,13 +3,15 @@
 
 ## Course: Visual Analytics for Policy and Management
 #
-### First assignment: Univariate Plots 
+## Final Project
 #
 #### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
 #
 <center><img src="https://i.ibb.co/nBvk8kM/20190313-114801.jpg" width="600"></center>
 #
 ###### Original plots: https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1
+#
+### Univariate Plots
 
 ```{r}
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
@@ -75,15 +77,7 @@ box5
 ```
 
 
-### Assignment 2: Bivariate plots
-
-_____
-<a id='part1'></a>
-
-# By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
-### 
-
-_____
+### Bivariate plots
 
 
 ```{r message= FALSE, warning = FALSE}
@@ -175,15 +169,7 @@ box7
 ```
 
 
-## Assignment 3: Multivariate plot
- 
-_____
-<a id='part1'></a>
- 
-### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
-###
- 
-_____
+### Multivariate Plots
 
 ```{r message= FALSE, warning = FALSE}
 # loading the data source and opening libraries
