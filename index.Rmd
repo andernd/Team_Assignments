@@ -3,7 +3,7 @@
 
 ## Course: Visual Analytics for Policy and Management
 #
-## Final Project
+### Final Project: Broadband Internet Access in Stevenson, WA
 #
 #### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
 #
@@ -269,12 +269,6 @@ df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
 heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
   geom_tile(aes(fill = Download.Speed.Rescaled))
 
-heat1
-```
-
-
-```{r message= FALSE, warning = FALSE}
-#Adding theme elements
 heat1 = heat1 + labs(title='Satisfaction with ISP not correlated with Download Speed',
             y=NULL,
             x='Satisfaction rating',
