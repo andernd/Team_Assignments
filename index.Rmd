@@ -172,7 +172,7 @@ box7
 
 ### Multivariate Plots
 
-```{r message= FALSE, warning = FALSE}
+```{r echo=FALSE, results='hide',message=FALSE}
 # loading the data source and opening libraries
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
 load(file=url(link))
