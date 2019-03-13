@@ -5,13 +5,14 @@
 #
 ### First assignment: Univariate Plots 
 #
-#### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela VÃ¡zquez
+#### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
 #
+<center><img src="https://i.ibb.co/nBvk8kM/20190313-114801.jpg" width="600"></center>
 #
 ###### Original plots: https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1
 
 ```{r}
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.rda'
+link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
 load(file=url(link))
 
 library(ggplot2)
