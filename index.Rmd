@@ -5,13 +5,19 @@
 #
 ### Final Project: Broadband Internet Access in Stevenson, WA
 #
-#### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela Vázquez
+#### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela V?zquez
 #
 <center><img src="https://i.ibb.co/nBvk8kM/20190313-114801.jpg" width="600"></center>
 #
-###### Original plots: https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1
-#
 ### Univariate Plots
+
+Background
+
+Stevenson, WA, is a small town of about 1500 people in the Portland Metropolitan Region. Although the small city features various natural and cultural amenities, many of its residents, businesses, and organizations have expressed dissatisfaction with local internet services. In February 2018, Stevenson City Council directed city staff to pursue the creation of a strategic plan regarding broadband infrastructure. 
+
+Broadband is high-speed internet, or internet with minimum speeds of 25 megabits per second (mbps) downloading and 3 mbps uploading, according to the US Federal Communications Commission (FCC). One of our team members, Kimberly Pearson, when interning at the City of Stevenson as the Broadband Project Coordinator, created a survey to assess current internet quality and uptake for busiesses and organizations. After sending the survey to over 150 small and medium sized businesses within city limits, 40 businesses responded, a ~26% response rate. The results were then visualized in Tableau (see plots below)
+
+###### Original plots: https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1
 
 ```{r message=FALSE, warning=FALSE}
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
