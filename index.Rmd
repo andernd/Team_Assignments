@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   word_document: default
+  html_document: default
 ---
 <br> 
 <center><img src="http://i.imgur.com/sSaOozN.png" width="500"></center>
@@ -63,13 +63,13 @@ We utilized two scatterplots to answer these questions.
 
 For our first multivariate plot, we wanted to examine the relationship between "subscribed speed", "download speed", "upload speed", and "satisfaction". We specifically wanted to answer the following question: 
 
-"Does subscribed speed, download speed, and upload speed have a positive or negative effect on        satisfaction, and what is the magnitude of that effect?"
+"Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?"
 
 We utilized a dot and whisker plot to answer this question. 
   
 For our second multivariate plot, we wanted to examine the relationship between "download speeds" and "satisfaction" by each ISP. We specifically wanted to answer the following question: 
 
-"Are higher download speeds associated with higher levels of satisfaction?"
+"Are higher download and upload speeds associated with higher levels of satisfaction?"
 
 We used a heat plot to answer this question. 
 
@@ -323,12 +323,13 @@ Dot and Whisker Plot - This plot describes two models of regressions. The first 
 Heatmap - 
 
 ##### Research Question
-1) Is there a relationship between customers' satisfaction with the speed of their internet and their experienced uplaod and download speeds?
-2) 
+1) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
+2) Are higher download and upload speeds associated with higher levels of satisfaction?
 
 ##### Explanation 
 
 We can create the dot and whisker plot using the following steps. Additionally, notes for each of the steps are included in the code. 
+
 1. Load the data 
 2. Call dotwhisker, broom, and dplyr from library 
 3. Create the first model of regression with the relevant variables (Download.Speed and Upload.Speed regressed onto Satisfaction.Speed)
