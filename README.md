@@ -5,8 +5,10 @@
 #
 ### Final Project: Broadband Internet Access in Stevenson, WA
 #
-<center><img src="https://imagizer.imageshack.com/img921/5748/AAYcXw.png" width="800"></center>
+<center><img src="https://github.com/andernd/Team_Assignments/raw/master/portraits.png" width="800"></center>
 #
-In this repo you can find:
-*The final [report](https://andernd.github.io/Team_Assignments/).
-*The raw data
+
+In this repo, you can find:
+
+* The final [report](https://andernd.github.io/Team_Assignments/)
+* The raw data
