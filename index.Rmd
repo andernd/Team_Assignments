@@ -41,7 +41,7 @@ Broadband is high-speed internet, or internet with minimum speeds of 25 megabits
 
 Within this report, we would like to explore the following research questions as they relate to each type of plot. 
 
-1) Univariate 
+####1) Univariate 
 
 For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questions: 
 
@@ -51,7 +51,7 @@ For our univariate plots, we wanted to examine the range of download and upload 
 
 We utilized two different box plots to answer these questions. 
 
-2) Bivariate
+####2) Bivariate
 
 For our bivariate plots, we wanted to examine the "advertised download speed" of each ISP and the recorded "download speed" of each ISP to answer the following questions: 
 
@@ -61,7 +61,7 @@ For our bivariate plots, we wanted to examine the "advertised download speed" of
   
 We utilized two scatterplots to answer these questions.
 
-3) Multivariate
+####3) Multivariate
 
 For our first multivariate plot, we wanted to examine the relationship between "subscribed speed", "download speed", "upload speed", and "satisfaction". We specifically wanted to answer the following question: 
 
@@ -85,16 +85,31 @@ _____
 
 ### Univariate Plots
 
+Boxplot 
+
 ##### Research Question
 
+1) "Which ISP had the highest range of download speeds?"
+2) "Which ISP had the highest range of upload speeds?"
+
 ##### Explanation 
+We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
+
+1. Load the data 
+2. Call GGPlot2 from library 
+3. Create a base boxplot with the relevant variables (ISP and Download.Speed or ISP and Upload.Speed)
+4. Add relevant color and the flip the axes 
+5. Include a title, data source, and label for each of the axes 
+6. Edit the location, size, color, and type style of each text element using the (theme) function
+7. Edit the scale and tick marks of the relevant axes 
+8. Visualize our plot  
 
 ```{r message=FALSE, warning=FALSE}
 # Here we load the dataset. 
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
 load(file=url(link))
 
-# Then, we call the Ggplot2 library. 
+# Then, we call the Ggplot2 library. If Ggplot2 has not been installed yet, go to the bottom right quadrant of your screen, click install, then select ggplot2 
 library(ggplot2)
 
 # We create a box plot for each ISP, illustrating the ranges of their dowload speeds. 
@@ -175,10 +190,29 @@ _____
 
 ### Bivariate plots
 
+Scatterplot 
+
 ##### Research Question
+
+"Which ISP most accurately advertised their download speeds?"
+"Which ISP most accurately advertised their upload speeds?"
 
 ##### Explanation 
 
+We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
+
+1. First create a factor for ISP using the existing data 
+2. Then create a dataframe with just the relevant factors. These include subscribed speed, download speed, upload speed, and ISP 
+3. Subset the data to only include the ISPs of interest - Wave, CenturyLink, and GorgeNet 
+4. Create a baseplot of Subscribed Speeds against Upload Speeds 
+5. Add a scatterplot element
+6. Add a reference line to measure against the Upload Speed against
+7. Separate the plots by ISP using the facetwrap command 
+8. Modify the scale for each axis 
+9. Modify the title, subtitle, data source, and labels for each axes
+10. Utilize the BW formatting preset 
+11. Format the text elements
+12. Visualize our plot 
 ```{r message= FALSE, warning = FALSE}
 # For our second plots, we create a factor, ISP, with specific levels. It is based off the original variable. 
 ISP <- factor(Internet$ISP)
@@ -201,7 +235,7 @@ box1 = base + geom_point()
 # Then, a reference line that represents the subscribed speeds. 
 box2 = box1 + geom_abline(a=0,b=45,lty=2,lwd=0.5, alpha = 0.5)
 
-# We used the commadn facet wrap to separate the plot into three plots, one for each ISP. 
+# We used the command facet wrap to separate the plot into three plots, one for each ISP. 
 box3 = box2 + facet_wrap( ~ ISP ,nrow = 1)
 
 # Then, we added a scale for the y axis and a scale for the x axis. 

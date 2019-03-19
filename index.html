@@ -231,23 +231,23 @@ $(document).ready(function () {
 <div id="original-plots-httpspublic.tableau.comprofilekimberly.pearsonvizhomestevensonbusinesssurveystory1" class="section level6">
 <h6>Original plots: <a href="https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1" class="uri">https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1</a></h6>
 <p>Within this report, we would like to explore the following research questions as they relate to each type of plot.</p>
-<ol style="list-style-type: decimal">
-<li>Univariate</li>
-</ol>
+</div>
+<div id="univariate" class="section level4">
+<h4>1) Univariate</h4>
 <p>For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questions:</p>
 <p>“Which ISP had the highest range of download speeds?”</p>
 <p>“Which ISP had the highest range of upload speeds?”</p>
 <p>We utilized two different box plots to answer these questions.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Bivariate</li>
-</ol>
+</div>
+<div id="bivariate" class="section level4">
+<h4>2) Bivariate</h4>
 <p>For our bivariate plots, we wanted to examine the “advertised download speed” of each ISP and the recorded “download speed” of each ISP to answer the following questions:</p>
 <p>“Which ISP most accurately advertised their download speeds?”</p>
 <p>“Which ISP most accurately advertised their upload speeds?”</p>
 <p>We utilized two scatterplots to answer these questions.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Multivariate</li>
-</ol>
+</div>
+<div id="multivariate" class="section level4">
+<h4>3) Multivariate</h4>
 <p>For our first multivariate plot, we wanted to examine the relationship between “subscribed speed”, “download speed”, “upload speed”, and “satisfaction”. We specifically wanted to answer the following question:</p>
 <p>“Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?”</p>
 <p>We utilized a dot and whisker plot to answer this question.</p>
@@ -264,16 +264,32 @@ $(document).ready(function () {
 </div>
 <div id="univariate-plots" class="section level3">
 <h3>Univariate Plots</h3>
+<p>Boxplot</p>
 <div id="research-question" class="section level5">
 <h5>Research Question</h5>
+<ol style="list-style-type: decimal">
+<li>“Which ISP had the highest range of download speeds?”</li>
+<li>“Which ISP had the highest range of upload speeds?”</li>
+</ol>
 </div>
 <div id="explanation" class="section level5">
 <h5>Explanation</h5>
+<p>We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code.</p>
+<ol style="list-style-type: decimal">
+<li>Load the data</li>
+<li>Call GGPlot2 from library</li>
+<li>Create a base boxplot with the relevant variables (ISP and Download.Speed or ISP and Upload.Speed)</li>
+<li>Add relevant color and the flip the axes</li>
+<li>Include a title, data source, and label for each of the axes</li>
+<li>Edit the location, size, color, and type style of each text element using the (theme) function</li>
+<li>Edit the scale and tick marks of the relevant axes</li>
+<li>Visualize our plot</li>
+</ol>
 <pre class="r"><code># Here we load the dataset. 
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
 load(file=url(link))
 
-# Then, we call the Ggplot2 library. 
+# Then, we call the Ggplot2 library. If Ggplot2 has not been installed yet, go to the bottom right quadrant of your screen, click install, then select ggplot2 
 library(ggplot2)
 
 # We create a box plot for each ISP, illustrating the ranges of their dowload speeds. 
@@ -350,11 +366,28 @@ box5</code></pre>
 </div>
 <div id="bivariate-plots" class="section level3">
 <h3>Bivariate plots</h3>
+<p>Scatterplot</p>
 <div id="research-question-1" class="section level5">
 <h5>Research Question</h5>
+<p>“Which ISP most accurately advertised their download speeds?” “Which ISP most accurately advertised their upload speeds?”</p>
 </div>
 <div id="explanation-1" class="section level5">
 <h5>Explanation</h5>
+<p>We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code.</p>
+<ol style="list-style-type: decimal">
+<li>First create a factor for ISP using the existing data</li>
+<li>Then create a dataframe with just the relevant factors. These include subscribed speed, download speed, upload speed, and ISP</li>
+<li>Subset the data to only include the ISPs of interest - Wave, CenturyLink, and GorgeNet</li>
+<li>Create a baseplot of Subscribed Speeds against Upload Speeds</li>
+<li>Add a scatterplot element</li>
+<li>Add a reference line to measure against the Upload Speed against</li>
+<li>Separate the plots by ISP using the facetwrap command</li>
+<li>Modify the scale for each axis</li>
+<li>Modify the title, subtitle, data source, and labels for each axes</li>
+<li>Utilize the BW formatting preset</li>
+<li>Format the text elements</li>
+<li>Visualize our plot</li>
+</ol>
 <pre class="r"><code># For our second plots, we create a factor, ISP, with specific levels. It is based off the original variable. 
 ISP &lt;- factor(Internet$ISP)
 str(ISP)</code></pre>
@@ -378,7 +411,7 @@ box1 = base + geom_point()
 # Then, a reference line that represents the subscribed speeds. 
 box2 = box1 + geom_abline(a=0,b=45,lty=2,lwd=0.5, alpha = 0.5)
 
-# We used the commadn facet wrap to separate the plot into three plots, one for each ISP. 
+# We used the command facet wrap to separate the plot into three plots, one for each ISP. 
 box3 = box2 + facet_wrap( ~ ISP ,nrow = 1)
 
 # Then, we added a scale for the y axis and a scale for the x axis. 
