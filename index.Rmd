@@ -211,6 +211,7 @@ We can create the plots using the following steps. Additionally, notes for each 
 10. Utilize the BW formatting preset 
 11. Format the text elements
 12. Visualize our plot 
+
 ```{r message= FALSE, warning = FALSE}
 # For our second plots, we create a factor, ISP, with specific levels. It is based off the original variable. 
 ISP <- factor(Internet$ISP)
