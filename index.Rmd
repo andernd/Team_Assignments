@@ -316,7 +316,7 @@ _____
 <a id='part4'></a>
 
 ### Multivariate Plots
-We created two types of multivariate plots, a dot and whisker plot and a heatmap. 
+We created two types of multivariate plots, a heatmap and a dot and whisker plot
 
 Dot and Whisker Plot - This plot describes two models of regressions. The first model determines whether actual upload and download speeds affect customer's satisfaction with speed. 
 
@@ -325,6 +325,64 @@ Heatmap -
 ##### Research Question
 1) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
 2) Are higher download and upload speeds associated with higher levels of satisfaction?
+
+```{r message= FALSE, warning = FALSE}
+##Heatmap
+
+library(scales)
+library(ggplot2)
+
+#loading data
+link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
+load(file=url(link))
+
+#changing download speed to a variable from 0-1
+Internet2$Download.Speed.Rescaled <- rescale(Internet2$Download.Speed)
+
+#adding data to data frame
+df1 <- Internet2
+
+#removing obervation with outlier
+df1 <- df1[-3,]
+
+#removing unnecessary variables from heatmap data frame
+df.heatmap <- df1[c(2,6,10,40)]
+
+#removing ISPs without many observations
+df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
+
+#plotting heat map
+heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
+  geom_tile(aes(fill = Download.Speed.Rescaled))
+
+heat1 = heat1 + labs(title='Satisfaction with ISP not related with Download Speed',
+            y=NULL,
+            x='Satisfaction rating',
+            caption='Source: Stevenson Business and Organization Internet Survey, 2018',
+            fill='Range of \nDownload Speeds')
+
+heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
+                    plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=0,
+                                margin=unit(c(0,0,.5,0),'cm'))),
+                    plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
+                    plot.caption=element_text(size=8, hjust=2, vjust = -1),
+                    legend.text=element_blank(),
+                    legend.background=element_rect(linetype='solid',
+                                                   color='black'),
+                    panel.background=element_rect(fill='white'),
+                    text=element_text(color='black'),
+                    axis.line.y=element_line(color = 'black'),
+                    axis.line.x=element_line(color='black'),
+                    axis.ticks=element_blank(),
+                    axis.text=element_text(size=11))
+
+heat2 + scale_fill_gradient(low='lightblue',high='navy',
+                            guide_colorbar(reverse=TRUE,
+                                           title='Download 
+Speed'))
+```
 
 ##### Explanation 
 
@@ -408,65 +466,6 @@ Download, Upload, and Subscribed Speed",
 
 ### Findings for Multivariate Plot of Regressions
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
-
-
-```{r message= FALSE, warning = FALSE}
-##Heatmap
-
-library(scales)
-library(ggplot2)
-
-#loading data
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
-load(file=url(link))
-
-#changing download speed to a variable from 0-1
-Internet2$Download.Speed.Rescaled <- rescale(Internet2$Download.Speed)
-
-#adding data to data frame
-df1 <- Internet2
-
-#removing obervation with outlier
-df1 <- df1[-3,]
-
-#removing unnecessary variables from heatmap data frame
-df.heatmap <- df1[c(2,6,10,40)]
-
-#removing ISPs without many observations
-df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
-
-#plotting heat map
-heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
-  geom_tile(aes(fill = Download.Speed.Rescaled))
-
-heat1 = heat1 + labs(title='Satisfaction with ISP not related with Download Speed',
-            y=NULL,
-            x='Satisfaction rating',
-            caption='Source: Stevenson Business and Organization Internet Survey, 2018',
-            fill='Range of \nDownload Speeds')
-
-heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
-                    plot.title=(element_text(face='bold',
-                                            size=15,
-                                            hjust=0,
-                                margin=unit(c(0,0,.5,0),'cm'))),
-                    plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
-                    plot.caption=element_text(size=8, hjust=2, vjust = -1),
-                    legend.text=element_blank(),
-                    legend.background=element_rect(linetype='solid',
-                                                   color='black'),
-                    panel.background=element_rect(fill='white'),
-                    text=element_text(color='black'),
-                    axis.line.y=element_line(color = 'black'),
-                    axis.line.x=element_line(color='black'),
-                    axis.ticks=element_blank(),
-                    axis.text=element_text(size=11))
-
-heat2 + scale_fill_gradient(low='lightblue',high='navy',
-                            guide_colorbar(reverse=TRUE,
-                                           title='Download 
-Speed'))
-```
 
 ### Map of Washington State Fixed Broadband Service
 
