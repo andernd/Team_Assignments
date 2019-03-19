@@ -327,7 +327,7 @@ Correlation Plot - This plot looks at the relationship between overall satisfact
 2) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
 
 
-##### Explanation 
+#####Explanation: Dot and Whisker Plots
 
 We can create the dot and whisker plot using the following steps. Additionally, notes for each of the steps are included in the code. 
 
@@ -410,7 +410,7 @@ Download, Upload, and Subscribed Speed",
 ### Findings for Multivariate Plot of Regressions
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
 
-###Correlation Plots
+###Explanation: Correlation Plots
 Now that we've seen that broadband speeds are not necessarily correlated with download speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
 
 ```{r}
@@ -418,9 +418,8 @@ Now that we've seen that broadband speeds are not necessarily correlated with do
 df.corr <- df1[,c('ISP','Cost','Subscribed.Speed','Download.Speed','Upload.Speed', 'Satisfaction.Speed', 'Satisfaction.Price','Satisfaction.Reliability','Satisfaction.Customer.Service','Satisfaction.Overall','Ease.Streaming','Ease.Downloading','Speed.Difficulty')]
 ```
 
-
 ```{r}
-#We need to convert the values for satisfaction ('Dissatisfied','Satisfied', etc.), cost, and ease ('Easy','Difficult', etc.)  into numeric values so we can compare them to each other
+#We need to convert the values for satisfaction ('Dissatisfied','Satisfied', etc.), cost, and ease ('Easy','Difficult', etc.)  into numeric factors so we can plot them compare them to each other
 df.corr$Cost <- as.integer(as.factor(df.corr$Cost))
 df.corr$Satisfaction.Price <- as.integer(as.factor(df.corr$Satisfaction.Price))
 df.corr$Satisfaction.Reliability <- as.integer(as.factor(df.corr$Satisfaction.Reliability))
@@ -432,7 +431,7 @@ df.corr$Speed.Difficulty <- as.integer(as.factor(df.corr$Speed.Difficulty))
 
 ```
 
-Nowe we can plot this dataframe
+Nowe we can plot this new dataframe (df.corr)
 
 ```{r}
 #Calling up the appropriate library
@@ -445,24 +444,27 @@ corrplot = ggcorr(df.corr[,-1], # all but the first column
        layout.exp=3, # width so that variable names are shown
        low = 'red',high = 'blue') # color scale
 
+#Adding titles
 corrplot1 = corrplot + labs(title='Correlation Plot for Broadband Satisfaction',
                    caption='Source: Stevenson Business and Organization Internet Survey, 2018')
 
-corrplot2 = corrplot1 + theme(plot.title=(element_text(face='bold',
-                                            size=15,
-                                            hjust=1)),
-                              plot.caption=(element_text(hjust=2.5)))
+#Adjusting the theme
+corrplot2 = corrplot1 + theme(plot.title=(element_text(face='bold', #Bold title
+                                            size=15, #Font size
+                                            hjust=1)), #title Horizontal alignment
+                              plot.caption=(element_text(hjust=2.5))) #Caption horizontal alignment
 
 corrplot2
 
 
 ```
-While this is helpful, the multiple variables measure satisfaction adds confusion to the plot. Instead, we can look at just Overal Satisfaction and see if it is association with any of the explanatory variables.
+Here, higher positive correlation will apear more blue (1) while negative correlations will appear more organe (-1). While this plot is helpful, the multiple variables that measure satisfaction adds confusion. Instead, we can look at just 'Overall Satisfaction' and see if it is associated with any of the explanatory variables.
 
 ```{r}
-
+#Creating a new dataframe with only one variable measuring satisfaction
 df.corr2 <- df.corr[,c('ISP','Satisfaction.Overall','Cost','Subscribed.Speed','Download.Speed','Upload.Speed','Ease.Streaming','Ease.Downloading')]
 
+#Same steps as the previous plot, but with the new dataframe (df.corr2)
 corrplot3 = ggcorr(df.corr2[,-1],
        hjust = 0.9,
        layout.exp=3, 
