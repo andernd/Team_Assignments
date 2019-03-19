@@ -445,7 +445,16 @@ corrplot = ggcorr(df.corr[,-1], # all but the first column
        layout.exp=3, # width so that variable names are shown
        low = 'red',high = 'blue') # color scale
 
-corrplot + labs(title='Correlation Plot for Broadband Satisfaction')
+corrplot1 = corrplot + labs(title='Correlation Plot for Broadband Satisfaction',
+                   caption='Source: Stevenson Business and Organization Internet Survey, 2018')
+
+corrplot2 = corrplot1 + theme(plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=1)),
+                              plot.caption=(element_text(hjust=2.5)))
+
+corrplot2
+
 
 ```
 While this is helpful, the multiple variables measure satisfaction adds confusion to the plot. Instead, we can look at just Overal Satisfaction and see if it is association with any of the explanatory variables.
@@ -454,11 +463,24 @@ While this is helpful, the multiple variables measure satisfaction adds confusio
 
 df.corr2 <- df.corr[,c('ISP','Satisfaction.Overall','Cost','Subscribed.Speed','Download.Speed','Upload.Speed','Ease.Streaming','Ease.Downloading')]
 
-ggcorr(df.corr2[,-1], # all but the first column
-       hjust = 0.9,# distance to plot (diagonal)
-       size=3, # font size
-       layout.exp=4, # width so that variable names are shown
-       low = 'red',high = 'blue') # color scale
+corrplot3 = ggcorr(df.corr2[,-1],
+       hjust = 0.9,
+       layout.exp=3, 
+       size=3, 
+       low = 'red',high = 'blue') 
+
+corrplot4 = corrplot3 + labs(title='Correlation Plot for Broadband Satisfaction',
+                             subtitle='Overall Satisfaction Only',
+                   caption='Source: Stevenson Business and Organization Internet Survey, 2018')
+
+corrplot5 = corrplot4 + theme(plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=1)),
+                              plot.subtitle=(element_text(hjust=.6)),
+                              plot.caption=(element_text(hjust=1.9)))
+
+corrplot5
+
 
 ```
 
