@@ -83,9 +83,9 @@ _____
 
 ### Univariate Plots
 
-Boxplot 
+Our univariate plots are boxplots, which are...
 
-##### Research Question
+##### Research Questions
 
 1) "Which ISP had the highest range of download speeds?"
 2) "Which ISP had the highest range of upload speeds?"
@@ -188,7 +188,7 @@ _____
 
 ### Bivariate plots
 
-Scatterplot 
+For our bivariate plots, we decided to create scatterplots. Scatterplots use dots to represent the values for two different variables. In our case, we wanted to compare customers' subscribed and actual speeds. 
 
 ##### Research Question
 
@@ -316,10 +316,27 @@ _____
 <a id='part4'></a>
 
 ### Multivariate Plots
+We created two types of multivariate plots, a dot and whisker plot and a heatmap. 
+
+Dot and Whisker Plot - This plot describes two models of regressions. The first model determines whether actual upload and download speeds affect customer's satisfaction with speed. 
+
+Heatmap - 
 
 ##### Research Question
+1) Is there a relationship between customers' satisfaction with the speed of their internet and their experienced uplaod and download speeds?
+2) 
 
 ##### Explanation 
+
+We can create the dot and whisker plot using the following steps. Additionally, notes for each of the steps are included in the code. 
+1. Load the data 
+2. Call dotwhisker, broom, and dplyr from library 
+3. Create the first model of regression with the relevant variables (Download.Speed and Upload.Speed regressed onto Satisfaction.Speed)
+4. Tidy and mutate the first model 
+5. Create the second model of regression with the relevant variables (Download.Speed, Upload.Speed, and Subscribed.Speed regressed onto Satisfaction.Speed)
+6. Combine the models 
+7. Plot the models, add theme information, and add titles
+8. Visualize our plot  
 
 ```{r echo=FALSE, message=FALSE}
 # loading the data source and opening libraries
