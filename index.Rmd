@@ -10,9 +10,7 @@ output:
 #
 ### Final Project: Broadband Internet Access in Stevenson, WA
 #
-#### By Nathan Anderson-Hobbs, Johnson Nguyen, Kim Pearson & Marcela V?zquez
-#
-<center><img src="https://i.ibb.co/nBvk8kM/20190313-114801.jpg" width="600"></center>
+<center><img src="https://imagizer.imageshack.com/img921/5748/AAYcXw.png" width="800"></center>
 #
 
 _____
