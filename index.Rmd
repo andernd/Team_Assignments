@@ -326,70 +326,6 @@ Dot and Whisker Plot - This plot describes two models of regressions. The first 
 1) Are higher download and upload speeds associated with higher levels of satisfaction?
 2) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
 
-##### Explanation 
-To create a heatmap plot using the following steps:
-1. Load the data
-2. Call 'scales' from the library
-3. Create a new dataframe from the existing data to assist with heatmap plotting
-
-```{r message= FALSE, warning = FALSE}
-##Heatmap
-
-library(scales)
-library(ggplot2)
-
-#loading data
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
-load(file=url(link))
-
-#changing download speed to a variable from 0-1
-Internet2$Download.Speed.Rescaled <- rescale(Internet2$Download.Speed)
-
-#adding data to data frame
-df1 <- Internet2
-
-#removing obervation with outlier
-df1 <- df1[-3,]
-
-#removing unnecessary variables from heatmap data frame
-df.heatmap <- df1[c(2,6,10,40)]
-
-#removing ISPs without many observations
-df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
-
-#plotting heat map
-heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
-  geom_tile(aes(fill = Download.Speed.Rescaled))
-
-heat1 = heat1 + labs(title='Satisfaction with ISP not related with Download Speed',
-            y=NULL,
-            x='Satisfaction rating',
-            caption='Source: Stevenson Business and Organization Internet Survey, 2018',
-            fill='Range of \nDownload Speeds')
-
-heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
-                    plot.title=(element_text(face='bold',
-                                            size=15,
-                                            hjust=0,
-                                margin=unit(c(0,0,.5,0),'cm'))),
-                    plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
-                    plot.caption=element_text(size=8, hjust=2, vjust = -1),
-                    legend.text=element_blank(),
-                    legend.background=element_rect(linetype='solid',
-                                                   color='black'),
-                    panel.background=element_rect(fill='white'),
-                    text=element_text(color='black'),
-                    axis.line.y=element_line(color = 'black'),
-                    axis.line.x=element_line(color='black'),
-                    axis.ticks=element_blank(),
-                    axis.text=element_text(size=11))
-
-heat2 + scale_fill_gradient(low='lightblue',high='navy',
-                            guide_colorbar(reverse=TRUE,
-                                           title='Download Speed'))
-```
-
-
 
 ##### Explanation 
 
@@ -473,6 +409,62 @@ Download, Upload, and Subscribed Speed",
 
 ### Findings for Multivariate Plot of Regressions
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
+
+###Correlation Plots
+Now that we've seen that broadband speeds are not necessarily correlated with download speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
+
+```{r}
+#The first step is to create a new dataframe with the variables of interest
+df.corr <- df1[,c('ISP','Cost','Subscribed.Speed','Download.Speed','Upload.Speed', 'Satisfaction.Speed', 'Satisfaction.Price','Satisfaction.Reliability','Satisfaction.Customer.Service','Satisfaction.Overall','Ease.Streaming','Ease.Downloading','Speed.Difficulty')]
+```
+
+
+```{r}
+#We need to convert the values for satisfaction ('Dissatisfied','Satisfied', etc.), cost, and ease ('Easy','Difficult', etc.)  into numeric values so we can compare them to each other
+df.corr$Cost <- as.integer(as.factor(df.corr$Cost))
+df.corr$Satisfaction.Price <- as.integer(as.factor(df.corr$Satisfaction.Price))
+df.corr$Satisfaction.Reliability <- as.integer(as.factor(df.corr$Satisfaction.Reliability))
+df.corr$Satisfaction.Customer.Service <- as.integer(as.factor(df.corr$Satisfaction.Customer.Service))
+df.corr$Satisfaction.Overall <- as.integer(as.factor(df.corr$Satisfaction.Overall))
+df.corr$Ease.Streaming <- as.integer(as.factor(df.corr$Ease.Streaming))
+df.corr$Ease.Downloading <- as.integer(as.factor(df.corr$Ease.Downloading))
+df.corr$Speed.Difficulty <- as.integer(as.factor(df.corr$Speed.Difficulty))
+
+```
+
+Nowe we can plot this dataframe
+
+```{r}
+#Calling up the appropriate library
+library(GGally) 
+
+#PVisaulizing onto a correlation plot
+corrplot = ggcorr(df.corr[,-1], # all but the first column
+       hjust = 0.9,# distance to plot (diagonal)
+       size=3, # font size
+       layout.exp=3, # width so that variable names are shown
+       low = 'red',high = 'blue') # color scale
+
+corrplot + labs(title='Correlation Plot for Broadband Satisfaction')
+
+```
+While this is helpful, the multiple variables measure satisfaction adds confusion to the plot. Instead, we can look at just Overal Satisfaction and see if it is association with any of the explanatory variables.
+
+```{r}
+
+df.corr2 <- df.corr[,c('ISP','Satisfaction.Overall','Cost','Subscribed.Speed','Download.Speed','Upload.Speed','Ease.Streaming','Ease.Downloading')]
+
+ggcorr(df.corr2[,-1], # all but the first column
+       hjust = 0.9,# distance to plot (diagonal)
+       size=3, # font size
+       layout.exp=4, # width so that variable names are shown
+       low = 'red',high = 'blue') # color scale
+
+```
+
+This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied.
+
+
 
 ### Map of Washington State Fixed Broadband Service
 
