@@ -1,5 +1,5 @@
 
-<img src="http://i.imgur.com/sSaOozN.png" width="500" class="center>
+<img src="http://i.imgur.com/sSaOozN.png" width="500" class="center">
 
 ## Course: Visual Analytics for Policy and Management
 ### Final Project: Broadband Internet Access in Stevenson, WA
