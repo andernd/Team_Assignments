@@ -318,13 +318,19 @@ _____
 ### Multivariate Plots
 We created two types of multivariate plots, a heatmap and a dot and whisker plot
 
+Heatmap - This plot shows the association between download speed and satisfaction, separated by ISP. We wanted to see if there was an esaily identifiable visual relationship between the variables.
+
 Dot and Whisker Plot - This plot describes two models of regressions. The first model determines whether actual upload and download speeds affect customer's satisfaction with speed. 
 
-Heatmap - 
-
 ##### Research Question
-1) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
-2) Are higher download and upload speeds associated with higher levels of satisfaction?
+1) Are higher download and upload speeds associated with higher levels of satisfaction?
+2) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
+
+##### Explanation 
+To create a heatmap plot using the following steps:
+1. Load the data
+2. Call 'scales' from the library
+3. Create a new dataframe from the existing data to assist with heatmap plotting
 
 ```{r message= FALSE, warning = FALSE}
 ##Heatmap
@@ -380,9 +386,10 @@ heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
 
 heat2 + scale_fill_gradient(low='lightblue',high='navy',
                             guide_colorbar(reverse=TRUE,
-                                           title='Download 
-Speed'))
+                                           title='Download Speed'))
 ```
+
+
 
 ##### Explanation 
 
