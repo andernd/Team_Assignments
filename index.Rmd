@@ -405,6 +405,10 @@ Download, Upload, and Subscribed Speed",
                     axis.text=element_text(size=8))
 ```
 
+### Findings for Multivariate Plot of Regressions
+Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
+
+
 ```{r message= FALSE, warning = FALSE}
 ##Heatmap
 
