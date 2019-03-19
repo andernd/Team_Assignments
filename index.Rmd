@@ -15,6 +15,22 @@ output:
 <center><img src="https://i.ibb.co/nBvk8kM/20190313-114801.jpg" width="600"></center>
 #
 
+_____
+<a id='part1'></a>
+
+Table of Contents:
+
+1. [Background](#part1)
+
+2. [Univariate plots](#part2) 
+
+3. [Bivariate plots](#part3)
+
+4. [Multivariate plots](#part4)
+
+5. [Conclusion](#part5)
+
+
 ### Background
 
 Stevenson, WA, is a small town of about 1500 people in the Portland Metropolitan Region. Although the small city features various natural and cultural amenities, many of its residents, businesses, and organizations have expressed dissatisfaction with local internet services. In February 2018, Stevenson City Council directed city staff to pursue the creation of a strategic plan regarding broadband infrastructure. 
@@ -37,6 +53,12 @@ Additionally, we provide a tutorial for the following data visualizations:
 - Regression Plot for Speed Satisfaction
 - Heat Map for Download Speed 
 - Map of Washington Fixed Broadband 
+
+_____
+
+[Go to table of contents.](#part1)
+
+<a id='part2'></a>
 
 ### Univariate Plots
 
@@ -64,7 +86,7 @@ box2 = box1 + geom_boxplot(color='black',fill='white',
 box3 = box2 + labs(title='Wave provides highest range of download speeds', subtitle = 'Stevenson, WA',
                    y = 'Download Speed (Megabytes/Second)',
                    x = NULL,
-                   caption = 'Source: Stevenson Business and Organization Internet Survey 
+                   caption = 'Source: Stevenson Business and Organization Internet Survey, 2018 
                    Note: Wave Outlier of 500 Mbps Omitteed')
 
 # Then, we format the location, size, color, and type style of each text element. 
@@ -100,7 +122,7 @@ box2 = box1 + geom_boxplot(color='black',fill='white',
 box3 = box2 + labs(title='Wave provides highest range of upload speeds', subtitle = 'Stevenson, WA',
                    y = 'Upload Speed (Megabytes/Second)',
                    x = NULL,
-                   caption = 'Source: Stevenson Business and Organization Internet Survey')
+                   caption = 'Source: Stevenson Business and Organization Internet Survey, 2018')
 
 # Then, we format the location, size, color, and type style of each text element. 
 box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
@@ -122,6 +144,11 @@ box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
 box5
 ```
 
+_____
+
+[Go to table of contents.](#part1)
+
+<a id='part3'></a>
 
 ### Bivariate plots
 
@@ -168,7 +195,7 @@ Title = 'GorgeNet Provides the Most Accurate Advertised Upload Speeds'
 box6 = box5 + labs(title=Title, subtitle = 'Stevenson, WA',
                    x= 'Suscribed Speed (Megabytes/Second)',
                    y = 'Upload Speed (Megabytes/Second)',
-                   caption='Source: Stevenson Business and Organization Internet Survey') + theme_bw()
+                   caption='Source: Stevenson Business and Organization Internet Survey,2018') + theme_bw()
 
 # We formatted for each text element, as before. 
 box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
@@ -208,7 +235,7 @@ Title = 'GorgeNet Provides the Most Accurate Advertised Download Speeds'
 box6 = box5 + labs(title=Title, subtitle = 'Stevenson, WA',
                    x= 'Suscribed Speed (Mbps)',
                    y = 'Download Speed (Mbps)',
-                   caption='Source: Stevenson Business and Organization Internet Survey
+                   caption='Source: Stevenson Business and Organization Internet Survey, 2018
                    Note: Wave Outlier of 500 Mbps Omitted') + theme_bw()
 
 box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
@@ -227,18 +254,23 @@ box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
 box7
 ```
 
+_____
+
+[Go to table of contents.](#part1)
+
+<a id='part4'></a>
+
 ### Multivariate Plots
 
 ##### Research Question
 
 ##### Explanation 
 
-```{r echo=FALSE, results='hide',message=FALSE}
+```{r echo=FALSE, message=FALSE}
 # loading the data source and opening libraries
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
 load(file=url(link))
 library(ggplot2)
-str(Internet2)
 ```
 
 ```{r message= FALSE, warning = FALSE}
@@ -260,8 +292,8 @@ model1_t = tidy(model1) %>% mutate(model = "Model 1") %>%
 ```
 
 ```{r message= FALSE, warning = FALSE}
-# We then created a second model of regression, this time with Subscribed Speeds. 
-model2=lm(Satisfaction.Speed~Download.Speed+Upload.Speed+Subscribed.Speed,data=Internet2[,-1]) # ~. means: all the remaining variables
+# We then created a second model of regression, this time with a third variable: Subscribed Speeds. 
+model2=lm(Satisfaction.Speed~Download.Speed+Upload.Speed+Subscribed.Speed,data=Internet2[,-1])
 summary(model2)
 
 # We tidied up and mutated the second model of regression to have a column called "model," with values of "Model 2"
@@ -274,22 +306,19 @@ model2_t <- tidy(model2) %>% mutate(model = "Model 2") %>%
 ```{r message= FALSE, warning = FALSE}
 # Here we combined all the models 
 allModels=rbind(model1_t, model2_t)
-
-# Then we plotted all the models. 
-dwplot(allModels) 
 ```
 
 ```{r message= FALSE, warning = FALSE}
-# Here we plot all the models and add or change theme/text elements 
+# Here we plot the coefficients and their confidence intervals for all models and add or change theme/text elements 
 dwplot(allModels) + 
   geom_vline(xintercept = 0, 
-               colour = "green", 
+               colour = "grey 50", 
                linetype = 2) + 
   scale_colour_grey(start = .1, end = .7) + 
   labs(y = "Independent Variables",
 title = "Relationship Between Speed Satisfaction & 
 Download, Upload, and Subscribed Speed", 
-         caption = "Source:Stevenson Business and Organization Internet Survey") +
+         caption = "Source:Stevenson Business and Organization Internet Survey, 2018") +
   theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     plot.title=(element_text(face='bold',
                                             size=15,
@@ -297,6 +326,7 @@ Download, Upload, and Subscribed Speed",
                     plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
                     plot.caption=element_text(size=9, vjust=-2),
                     text=element_text(color='black', size = 11),
+                    panel.background = element_rect(fill='white'),
                     legend.title = element_blank(),
                     axis.line.y=element_line(color = 'black'),
                     axis.line.x=element_line(color='black'),
@@ -332,10 +362,10 @@ df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
 heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
   geom_tile(aes(fill = Download.Speed.Rescaled))
 
-heat1 = heat1 + labs(title='Satisfaction with ISP not correlated with Download Speed',
+heat1 = heat1 + labs(title='Satisfaction with ISP not related with Download Speed',
             y=NULL,
             x='Satisfaction rating',
-            caption='Source: Stevenson Business and Organization Internet Survey',
+            caption='Source: Stevenson Business and Organization Internet Survey, 2018',
             fill='Range of \nDownload Speeds')
 
 heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
@@ -344,20 +374,21 @@ heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
                                             hjust=0,
                                 margin=unit(c(0,0,.5,0),'cm'))),
                     plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
-                    plot.caption=element_text(size=8, hjust=2),
+                    plot.caption=element_text(size=8, hjust=2, vjust = -1),
                     legend.text=element_blank(),
                     legend.background=element_rect(linetype='solid',
                                                    color='black'),
                     panel.background=element_rect(fill='white'),
-                    text=element_text(color='gray25', size = 11),
+                    text=element_text(color='black'),
                     axis.line.y=element_line(color = 'black'),
                     axis.line.x=element_line(color='black'),
                     axis.ticks=element_blank(),
-                    axis.text=element_text(size=8))
+                    axis.text=element_text(size=11))
 
 heat2 + scale_fill_gradient(low='lightblue',high='navy',
                             guide_colorbar(reverse=TRUE,
-                                           title='Download Speed'))
+                                           title='Download 
+Speed'))
 ```
 
 ### Map of Washington State Fixed Broadband Service
@@ -368,7 +399,14 @@ How does fixed broadband service vary across the state of Washington?
 ##### Explanation 
 Below, we create a map of broadband service speeds in Washington, at the Census block code unit of analysis. 
 
+_____
+
+[Go to table of contents.](#part1)
+
+<a id='part5'></a>
+
 ### Conclusion
 
-To conclude....
+To conclude...
 
+[Go to table of contents.](#part1)
