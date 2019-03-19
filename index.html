@@ -230,28 +230,31 @@ $(document).ready(function () {
 <p>Broadband is high-speed internet, or internet with minimum speeds of 25 megabits per second (mbps) downloading and 3 mbps uploading, according to the US Federal Communications Commission (FCC). One of our team members, Kimberly Pearson, when interning at the City of Stevenson as the Broadband Project Coordinator, created a survey to assess current internet quality and uptake for busiesses and organizations. After sending the survey to over 150 small and medium sized businesses within city limits, 40 businesses responded, a ~26% response rate. The 40 survey questions refer to the business’ chosen Internet Service Provider, the cost of their internet service, the speeds they subscribe to, their actual experienced speeds, their satisfaction with their internet plan, and more. The results were then visualized in Tableau (see plots below).</p>
 <div id="original-plots-httpspublic.tableau.comprofilekimberly.pearsonvizhomestevensonbusinesssurveystory1" class="section level6">
 <h6>Original plots: <a href="https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1" class="uri">https://public.tableau.com/profile/kimberly.pearson#!/vizhome/StevensonBusinessSurvey/Story1</a></h6>
-<p>Within this report, we would like to explore the following research questions:</p>
-<p>Additionally, we provide a tutorial for the following data visualizations:</p>
+<p>Within this report, we would like to explore the following research questions as they relate to each type of plot.</p>
 <ol style="list-style-type: decimal">
 <li>Univariate</li>
 </ol>
-<ul>
-<li>Download Speed Range by ISP</li>
-<li>Upload Speed Range by ISP</li>
-</ul>
+<p>For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questions:</p>
+<p>“Which ISP had the highest range of download speeds?”</p>
+<p>“Which ISP had the highest range of upload speeds?”</p>
+<p>We utilized two different box plots to answer these questions.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Bivariate</li>
 </ol>
-<ul>
-<li>Subscribed Download Speed vs. Actual Speed</li>
-<li>Subscribed Upload Speed vs. Actual Speed</li>
-</ul>
+<p>For our bivariate plots, we wanted to examine the “advertised download speed” of each ISP and the recorded “download speed” of each ISP to answer the following questions:</p>
+<p>“Which ISP most accurately advertised their download speeds?”</p>
+<p>“Which ISP most accurately advertised their upload speeds?”</p>
+<p>We utilized two scatterplots to answer these questions.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Multivariate</li>
 </ol>
+<p>For our first multivariate plot, we wanted to examine the relationship between “subscribed speed”, “download speed”, “upload speed”, and “satisfaction”. We specifically wanted to answer the following question:</p>
+<p>“Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?”</p>
+<p>We utilized a dot and whisker plot to answer this question.</p>
+<p>For our second multivariate plot, we wanted to examine the relationship between “download speeds” and “satisfaction” by each ISP. We specifically wanted to answer the following question:</p>
+<p>“Are higher download speeds associated with higher levels of satisfaction?”</p>
+<p>We used a heat plot to answer this question.</p>
 <ul>
-<li>Regression Plot for Speed Satisfaction</li>
-<li>Heat Map for Download Speed</li>
 <li>Map of Washington Fixed Broadband</li>
 </ul>
 <hr />
@@ -493,7 +496,7 @@ model1_t = tidy(model1) %&gt;% mutate(model = &quot;Model 1&quot;) %&gt;%
    relabel_predictors(Upload.Speed = &quot;Upload&quot;,
                      Download.Speed = &quot;Download&quot;,
                      Subscribed.Speed = &quot;Subscribed&quot;)</code></pre>
-<pre class="r"><code># We then created a second model of regression, this time with a third variable: Subscribed Speeds. 
+<pre class="r"><code># We then created a second model of regression, this time with a fourth variable: Subscribed Speeds. 
 model2=lm(Satisfaction.Speed~Download.Speed+Upload.Speed+Subscribed.Speed,data=Internet2[,-1])
 summary(model2)</code></pre>
 <pre><code>## 
