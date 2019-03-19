@@ -1,7 +1,7 @@
 ---
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 <br> 
 <center><img src="http://i.imgur.com/sSaOozN.png" width="500"></center>
@@ -410,11 +410,17 @@ Download, Upload, and Subscribed Speed",
 ### Findings for Multivariate Plot of Regressions
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
 
-###Explanation: Correlation Plots
+####Explanation: Correlation Plots
 Now that we've seen that broadband speeds are not necessarily correlated with download speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
+
 
 ```{r}
 #The first step is to create a new dataframe with the variables of interest
+
+#Adding data to dataframe and removing outlier observation in row 3
+df1 <- Internet2[-3,]
+
+#Adding relevant variables to new dataframe
 df.corr <- df1[,c('ISP','Cost','Subscribed.Speed','Download.Speed','Upload.Speed', 'Satisfaction.Speed', 'Satisfaction.Price','Satisfaction.Reliability','Satisfaction.Customer.Service','Satisfaction.Overall','Ease.Streaming','Ease.Downloading','Speed.Difficulty')]
 ```
 
@@ -431,9 +437,9 @@ df.corr$Speed.Difficulty <- as.integer(as.factor(df.corr$Speed.Difficulty))
 
 ```
 
-Nowe we can plot this new dataframe (df.corr)
+Now we can plot this new dataframe (df.corr)
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 #Calling up the appropriate library
 library(GGally) 
 
@@ -452,12 +458,13 @@ corrplot1 = corrplot + labs(title='Correlation Plot for Broadband Satisfaction',
 corrplot2 = corrplot1 + theme(plot.title=(element_text(face='bold', #Bold title
                                             size=15, #Font size
                                             hjust=1)), #title Horizontal alignment
-                              plot.caption=(element_text(hjust=2.5))) #Caption horizontal alignment
+                              plot.caption=(element_text(hjust=1))) #Caption horizontal alignment
 
 corrplot2
 
 
 ```
+
 Here, higher positive correlation will apear more blue (1) while negative correlations will appear more organe (-1). While this plot is helpful, the multiple variables that measure satisfaction adds confusion. Instead, we can look at just 'Overall Satisfaction' and see if it is associated with any of the explanatory variables.
 
 ```{r}
@@ -479,14 +486,14 @@ corrplot5 = corrplot4 + theme(plot.title=(element_text(face='bold',
                                             size=15,
                                             hjust=1)),
                               plot.subtitle=(element_text(hjust=.6)),
-                              plot.caption=(element_text(hjust=1.9)))
+                              plot.caption=(element_text(hjust=1)))
 
 corrplot5
 
 
 ```
 
-This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied.
+This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied. The greatest positive correlation is between 'Satisfaction.Overall' and 'Ease.Downloading', which indicates that people who rate the difficulty of downloading lower are more satisfied overall with their ISP.
 
 
 ### Map of Washington State Fixed Broadband Service
