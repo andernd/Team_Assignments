@@ -316,11 +316,11 @@ _____
 <a id='part4'></a>
 
 ### Multivariate Plots
-We created two types of multivariate plots, a heatmap and a dot and whisker plot
-
-Heatmap - This plot shows the association between download speed and satisfaction, separated by ISP. We wanted to see if there was an esaily identifiable visual relationship between the variables.
+We created two types of multivariate plots, a dot and whisker plot and a correlation plot.
 
 Dot and Whisker Plot - This plot describes two models of regressions. The first model determines whether actual upload and download speeds affect customer's satisfaction with speed. 
+
+Correlation Plot - This plot looks at the relationship between overall satisfaction and other explanatory variables
 
 ##### Research Question
 1) Are higher download and upload speeds associated with higher levels of satisfaction?
@@ -463,7 +463,6 @@ ggcorr(df.corr2[,-1], # all but the first column
 ```
 
 This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied.
-
 
 
 ### Map of Washington State Fixed Broadband Service
