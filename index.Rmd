@@ -536,6 +536,14 @@ How does fixed broadband service vary across the state of Washington?
 ##### Explanation 
 Below, we create a map of broadband service speeds in Washington, at the Census block code unit of analysis. 
 
+```{r}
+library(tidycensus)
+library(tigris)
+wa_bs <- blocks("Washington")
+plot(wa_bgs)
+```
+
+
 _____
 
 [Go to table of contents.](#part1)
