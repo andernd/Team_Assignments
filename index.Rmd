@@ -42,7 +42,7 @@ Broadband is high-speed internet, or internet with minimum speeds of 25 megabits
 
 Within this report, we would like to explore the following research questions as they relate to each type of plot. 
 
-
+#
 ####1) Univariate 
 
 For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questionS: 
@@ -53,7 +53,7 @@ For our univariate plots, we wanted to examine the range of download and upload 
 
 We utilized two different box plots to answer these questions. 
 
-
+#
 ####2) Bivariate
 
 For our bivariate plots, we wanted to examine the "advertised download speed" of each ISP and the recorded "download speed" of each ISP to answer the following questions: 
@@ -64,13 +64,13 @@ For our bivariate plots, we wanted to examine the "advertised download speed" of
   
 We utilized two scatterplots to answer these questions.
 
-
+#
 ####3) Multivariate
 
-For our first multivariate plot, we wanted to examine the relationship between "subscribed speed", "download speed", "upload speed", and "satisfaction". We specifically wanted to answer the following question: 
+For our first multivariate plot, we wanted to examine the relationship between "subscribed speed", "download speed", "upload speed", and "satisfaction with speed". We specifically wanted to answer the following question: 
 
- 1) "Is there a relationship between customer satisfaction with Internet speed and download speed, upload speed and subscribed speed?
- 2) If not, what variables are correlated to overall customer satisfaction with Internet services?
+ 1) "Is there a relationship between customer satisfaction with internet speed and download speed, upload speed and subscribed speed?
+ 2) If not, what variables are correlated to overall customer satisfaction with internet services?
 
 We created two regression models and used a dot and whisker plot to answer our first question. 
   
@@ -83,22 +83,22 @@ _____
 [Go to table of contents.](#part1)
 
 
-
+#
 <a id='part2'></a>
 
 ### Univariate Plots
 
 Our univariate plots are boxplots. A boxplot is a graph that provides a good indication of how the values in the data are spread out. Boxplots are a standardized way of displaying the distribution of data based on a five number summary (the minimum value, first quartile (Q1), the median, third quartile (Q3), and the maximum value). They also show the outliers.
 
-
+#
 ##### Research Questions
 
   1) "Which is the range of download speeds provided by each ISP?"
   2) "Which is the range of upload speeds provided by each ISP?"
 
-We expect to find similar Internet speed ranges across all providers.
+We expect to find similar internet speed ranges across all providers.
 
-
+#
 ##### Explanation 
 
 We created the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
@@ -193,13 +193,13 @@ box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
 box5
 ```
 
-The results of this plot are consistent with the previous one. Wave provides the highest range of upload speeds, while Century Link provides the lowest range but there is an outlier. GogeNet also provides a small range of variation in upload speeds. When we compare both plots, we can conclude that, in general, download median speeds are higher than upload median speeds and, in contrast with the other to ISP, Wave provides a high range of Internet speeds.
+The results of this plot are consistent with the previous one. Wave provides the highest range of upload speeds, while Century Link provides the lowest range but there is an outlier. GogeNet also provides a small range of variation in upload speeds. When we compare both plots, we can corroborate that, in general, download median speeds are higher than upload median speeds and, in contrast with the other to ISP, Wave provides a high range of internet speeds.
 
 _____
 
 [Go to table of contents.](#part1)
 
-
+#
 
 <a id='part3'></a>
 
@@ -207,13 +207,15 @@ _____
 
 For our bivariate plots, we decided to create scatterplots. Scatterplots use dots to represent the values for two different variables showing the relationship between them. In our case, we wanted to compare customers' subscribed and actual speeds. 
 
+#
 ##### Research Questions
 
 "Which ISP most accurately advertised their download speeds?"
 "Which ISP most accurately advertised their upload speeds?"
 
-We expected to find a linear relationship between both variables, advertised and actual Internet speeds. This would mean that the advertised speed corresponds to the actual speed provided.
+We expected to find a linear relationship between both variables, advertised and actual internet speeds. This would mean that the advertised speed corresponds to the actual speed provided.
 
+#
 ##### Explanation 
 
 We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
@@ -331,12 +333,13 @@ box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
 box7
 ```
 
-This scatterplot indicates that GorgeNet is the only ISP whose advertised download speeds closely match the actually provided speeds. Century Link provides slower upload speeds than the ones it announces, although in some cases, download speeds are closed to the publicized speeds. Most Wave's customers in the dataset receive slower download speeds than they subscribed for; a couple of them get speeds very close to their subscription speeds, and a couple more get faster speeds than the advertised ones.
+This scatterplot indicates that GorgeNet is the only ISP whose advertised download speeds closely match the actual provided speeds. Century Link provides slower upload speeds than the ones it announces, although in some cases, download speeds are closed to the publicized speeds. Most Wave's customers in the dataset receive slower download speeds than they subscribed for; a couple of them get speeds very close to their subscription speeds, and a couple more get faster speeds than the advertised ones.
 
 _____
 
 [Go to table of contents.](#part1)
 
+#
 <a id='part4'></a>
 
 ### Multivariate Plots
@@ -344,15 +347,17 @@ We created two types of multivariate plots, a dot and whisker plot and a correla
 
 The dot and whisker Plot describes two models of regressions. The first model determines whether actual upload and download speeds are related to customer's satisfaction with speed. The second model includes subscribed speeds as third variable. The dots represent the coefficientes and the whiskers the confidence intervals.
 
-The correlation plot looks at the relationship between overall satisfaction with Internet services and other explanatory variables.
+The correlation plot looks at the relationship between overall satisfaction with internet services and other explanatory variables.
 
+#
 ##### Research Questions
 
- 1) "Is there a relationship between customer satisfaction with Internet speed and download speed, upload speed and subscribed speed?
- 2) If not, what variables are correlated to overall customer satisfaction with Internet services?
+ 1) "Is there a relationship between customer satisfaction with internet speed and download speed, upload speed and subscribed speed?
+ 2) If not, what variables are correlated to overall customer satisfaction with internet services?
 
-We expected to find a positive relationship between customer satisfaction with Internet speed and download speed, upload speed and subscribed speed.
+We expected to find a positive relationship between customer satisfaction with internet speed and download speed, upload speed and subscribed speed.
 
+#
 #####Explanation: Dot and Whisker Plots
 
 We can create the dot and whisker plot using the following steps. Additionally, notes for each of the steps are included in the code. 
@@ -435,7 +440,7 @@ Download, Upload, and Subscribed Speed",
 
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, we cannot conclude that the coefficients are actually different from 0 and, as a result, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
 
-
+#
 ####Explanation: Correlation Plots
 Now that we've seen that broadband speed satisfaction is not necessarily related with download, upload and subscribed speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
 
@@ -535,10 +540,16 @@ _____
 
 [Go to table of contents.](#part1)
 
+#
 <a id='part5'></a>
 
 ### Conclusion
 
+Small and medium sized businesses in Stevenson, WA, receive different download and upload broadband speeds depending on their ISP. Wave customers are provided with the highest upload and download median speeds, and they also have the highest speed range. Century Link and GorgeNet offer slower speeds and smaller speed ranges. From all the three ISP in the sample, Century Link offers the lowest internet speed.
+
+The analysis of actual speeds in comparison to advertised (subscribed) speeds shows a tendency to provide slower speeds than the advertised ones. Only GorgeNet's download speeds match the advertised ones. However, its upload speeds tend to be below the expectations. Century Link provides slower download and upload speeds than the ones it advertises. Wave's presents mixed results. In some cases, the actual speeds are close to the parameters, but in many cases they are below them. There are a few Wave's customers that receive higher speeds than they subscribed for.
+
+With regards to customer satisfaction, our findings indicate that advertised and actual internet speeds are not a significant driver of satisfaction. However, we found a negative correlation between overall satisfaction with internet service and its cost. The more expensive the internet service is, the less satisfied customers tend to be. In contrast, we found a positive correlation between overall satisfaction and the ease of downloading. The easier downloading is, the more satisfied customers tend to be.
 
 
 [Go to table of contents.](#part1)
