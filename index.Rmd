@@ -74,7 +74,7 @@ For our first multivariate plot, we wanted to examine the relationship between "
 
 We created two regression models and used a dot and whisker plot to answer our first question. 
   
-To respond our second question we used a correlation plot.
+To respond to our second question we used a correlation plot.
 
 - Map of Washington Fixed Broadband 
 
@@ -535,14 +535,6 @@ How does fixed broadband service vary across the state of Washington?
 
 ##### Explanation 
 Below, we create a map of broadband service speeds in Washington, at the Census block code unit of analysis. 
-
-```{r}
-library(tidycensus)
-library(tigris)
-wa_bs <- blocks("Washington")
-plot(wa_bgs)
-```
-
 
 _____
 
