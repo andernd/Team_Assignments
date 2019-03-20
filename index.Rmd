@@ -113,14 +113,14 @@ We created the plots using the following steps. Additionally, notes for each of 
 
 ```{r message=FALSE, warning=FALSE}
 #Load the dataset 
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
+link='https://github.com/andernd/Team_Assignments/raw/master/Internet2.RData'
 load(file=url(link))
 
 #Call the GGPLOT2 library. If GGPLOT2 has not been installed yet, go to the bottom right quadrant of your screen, select "Packages", click install, then select ggplot2 
 library(ggplot2)
 
 #Create the "base" that we will use to create our plot, in this case, it will illustrate the ranges of download   speeds 
-box1 = ggplot(Internet, aes(x = ISP, y=Download.Speed)) # ggplot(database name, aes( x = variable we want to plot in the x-axis, y=variable we want to plot in the y-axis))
+box1 = ggplot(Internet2, aes(x = ISP, y=Download.Speed)) # ggplot(database name, aes( x = variable we want to plot in the x-axis, y=variable we want to plot in the y-axis))
 
 #Add information regarding the type of plot we want to generate, colors, and then flip it so the axes are reversed 
 box2 = box1 + geom_boxplot(color='black',fill='white', # geom_boxplot <- the type of plot we want to create
@@ -159,7 +159,7 @@ The boxplot shows that GorgeNet has the least spread out download speed distribu
 
 ```{r message=FALSE, warning=FALSE}
 #Create the "base" that we will use to create our plot, in this case, it will illustrate the ranges of upload     speeds
-box1 = ggplot(Internet, aes(x= ISP, y = Upload.Speed)) 
+box1 = ggplot(Internet2, aes(x= ISP, y = Upload.Speed)) 
 
 #Add information regarding the type of plot, colors, and then flip it so the axes are reversed 
 box2 = box1 + geom_boxplot(color='black',fill='white',
@@ -234,12 +234,12 @@ We can create the plots using the following steps. Additionally, notes for each 
 
 ```{r message= FALSE, warning = FALSE}
 #Create a factor, ISP, with specific levels. It is based off the original variable 
-ISP <- factor(Internet$ISP)
+ISP <- factor(Internet2$ISP)
 str(ISP) # compactly displays the internal structure of the new factor ISP
 levels(ISP) # provides access to the levels attribute of ISP
 
 #Create a dataframe with just the factors that we are concerned with in these plots. It contains information for all of the ISPs 
-df1 <- data.frame(ISP, Internet$Subscribed.Speed, Internet$Download.Speed, Internet$Upload.Speed)
+df1 <- data.frame(ISP, Internet2$Subscribed.Speed, Internet2$Download.Speed, Internet2$Upload.Speed)
 names(df1) <- c("ISP", "Subscribed", "Download", "Upload") #set new names for our factors
 
 #Subset the data to only include Wave, CenturyLink, and GorgeNet 
@@ -372,7 +372,7 @@ We can create the dot and whisker plot using the following steps. Additionally, 
 
 ```{r echo=FALSE, message=FALSE}
 #Load the data source and open the Ggplot library
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
+link='https://github.com/andernd/Team_Assignments/raw/master/Internet2.RData'
 load(file=url(link))
 library(ggplot2)
 ```
