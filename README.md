@@ -7,4 +7,4 @@
 In this repo, you can find:
 
 * The final [report](https://andernd.github.io/Team_Assignments/)
-* The raw data
+* The raw [data](https://github.com/andernd/Team_Assignments/blob/master/Internet2.RData)
