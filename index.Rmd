@@ -209,8 +209,8 @@ For our bivariate plots, we decided to create scatterplots. Scatterplots use dot
 #
 ##### Research Questions
 
-"Which ISP most accurately advertised their download speeds?"
-"Which ISP most accurately advertised their upload speeds?"
+ 1) "Which ISP most accurately advertised their download speeds?"
+ 2) "Which ISP most accurately advertised their upload speeds?"
 
 We expected to find a linear relationship between both variables, advertised and actual internet speeds. This would mean that the advertised speed corresponds to the actual speed provided.
 
@@ -289,7 +289,7 @@ box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
 box7
 ```
 
-The plot shows that any ISP accurately advertises its upload speeds. Century Link and GorgeNet provide slower upload speeds than the ones they publicize. In most cases, Wave's actual upload speeds are slower than the advertised ones, but in our sample, there were two cases at which the upload speed provided exceeded the advertised speed.
+The plot shows that no ISP accurately advertises its upload speeds. Century Link and GorgeNet provide slower upload speeds than the ones they publicize. In most cases, Wave's actual upload speeds are slower than the advertised ones, but in our sample, there were two cases at which the upload speed provided exceeded the advertised speed.
 
 ```{r message= FALSE, warning = FALSE}
 
@@ -332,7 +332,7 @@ box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
 box7
 ```
 
-This scatterplot indicates that GorgeNet is the only ISP whose advertised download speeds closely match the actual provided speeds. Century Link provides slower upload speeds than the ones it announces, although in some cases, download speeds are closed to the publicized speeds. Most Wave's customers in the dataset receive slower download speeds than they subscribed for; a couple of them get speeds very close to their subscription speeds, and a couple more get faster speeds than the advertised ones.
+This scatterplot indicates that GorgeNet is the only ISP whose advertised download speeds closely matches the actual provided speeds. Century Link provides slower upload speeds than the ones it advertises, although in some cases, download speeds are close to the advertised speeds. Most Wave's customers in the dataset receive slower download speeds than they subscribed for; a couple of them get speeds very close to their subscription speeds, and a couple more get faster speeds than the advertised ones.
 
 _____
 
@@ -505,7 +505,7 @@ corrplot2
 
 ```
 
-Here, higher positive correlation will apear more black (1) while negative correlations will appear white (-1). While this plot is helpful, the multiple variables that measure satisfaction adds confusion. Instead, we can look at just 'Overall Satisfaction' and see if it is associated with any of the explanatory variables.
+Here, higher positive correlation will appear darker (1) while negative correlations will appear lighter (-1). While this plot is helpful, the multiple variables that measure satisfaction adds confusion. Instead, we can look at just 'Overall Satisfaction' and see if it is associated with any of the explanatory variables.
 
 ```{r}
 #Creating a new dataframe with only one variable measuring satisfaction
