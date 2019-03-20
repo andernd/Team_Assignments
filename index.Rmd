@@ -76,8 +76,6 @@ We created two regression models and used a dot and whisker plot to answer our f
   
 To respond to our second question we used a correlation plot.
 
-- Map of Washington Fixed Broadband 
-
 _____
 
 [Go to table of contents.](#part1)
@@ -526,15 +524,6 @@ corrplot5
 ```
 
 This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied. The greatest positive correlation is between 'Satisfaction.Overall' and 'Ease.Downloading', which indicates that people who rate the difficulty of downloading lower are more satisfied overall with their ISP.
-
-
-### Map of Washington State Fixed Broadband Service
-
-##### Research Question
-How does fixed broadband service vary across the state of Washington? 
-
-##### Explanation 
-Below, we create a map of broadband service speeds in Washington, at the Census block code unit of analysis. 
 
 _____
 
