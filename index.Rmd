@@ -10,7 +10,7 @@ output:
 #
 ### Final Project: Broadband Internet Access in Stevenson, WA
 #
-<center><img src="https://imagizer.imageshack.com/img921/5748/AAYcXw.png" width="800"></center>
+<center><img src="https://github.com/andernd/Team_Assignments/raw/master/portraits.png" width="800"></center>
 #
 
 _____
@@ -41,11 +41,11 @@ Within this report, we would like to explore the following research questions as
 
 ####1) Univariate 
 
-For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questions: 
+For our univariate plots, we wanted to examine the range of download and upload speeds offered by each Internet Service Provider (ISP) answer the following questionS: 
 
-  "Which ISP had the highest range of download speeds?"
+  1) "Which is the range of download speeds provided by each ISP?"
 
-  "Which ISP had the highest range of upload speeds?"
+  2) "Which is the range of upload speeds provided by each ISP?"
 
 We utilized two different box plots to answer these questions. 
 
@@ -53,9 +53,9 @@ We utilized two different box plots to answer these questions.
 
 For our bivariate plots, we wanted to examine the "advertised download speed" of each ISP and the recorded "download speed" of each ISP to answer the following questions: 
 
-  "Which ISP most accurately advertised their download speeds?"
+  1) "Which ISP most accurately advertised their download speeds?"
 
-  "Which ISP most accurately advertised their upload speeds?"
+  2) "Which ISP most accurately advertised their upload speeds?"
   
 We utilized two scatterplots to answer these questions.
 
@@ -63,15 +63,15 @@ We utilized two scatterplots to answer these questions.
 
 For our first multivariate plot, we wanted to examine the relationship between "subscribed speed", "download speed", "upload speed", and "satisfaction". We specifically wanted to answer the following question: 
 
-"Does subscribed speed, download speed, and upload speed have a positive or negative effect on        satisfaction, and what is the magnitude of that effect?"
+"Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?"
 
-We utilized a dot and whisker plot to answer this question. 
+We created two regression models and plotted them to answer this question. 
   
-For our second multivariate plot, we wanted to examine the relationship between "download speeds" and "satisfaction" by each ISP. We specifically wanted to answer the following question: 
+For our second multivariate plot, we wanted to examine the correlation between "download speeds" and "satisfaction" by each ISP. We specifically wanted to answer the following question: 
 
-"Are higher download speeds associated with higher levels of satisfaction?"
+"Are higher download and upload speeds correlated with higher levels of satisfaction?" ###WE NEED TO CONFIRM THIS IS CORRECT###
 
-We used a heat plot to answer this question. 
+We used a correlation plot to answer this question. 
 
 - Map of Washington Fixed Broadband 
 
@@ -83,15 +83,17 @@ _____
 
 ### Univariate Plots
 
-Our univariate plots are boxplots, which are...
+Our univariate plots are boxplots. A boxplot is a graph that provides a good indication of how the values in the data are spread out. Boxplots are a standardized way of displaying the distribution of data based on a five number summary (the minimum value, first quartile (Q1), the median, third quartile (Q3), and the maximum value). They also show the outliers.
 
 ##### Research Questions
 
-1) "Which ISP had the highest range of download speeds?"
-2) "Which ISP had the highest range of upload speeds?"
+  1) "Which is the range of download speeds provided by each ISP?"
+  2) "Which is the range of upload speeds provided by each ISP?"
+
+We expect to find similar Internet speed ranges across all providers.
 
 ##### Explanation 
-We can create the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
+We created the plots using the following steps. Additionally, notes for each of the steps are included in the code. 
 
 1. Load the data 
 2. Call GGPlot2 from library 
@@ -103,29 +105,29 @@ We can create the plots using the following steps. Additionally, notes for each 
 8. Visualize our plot  
 
 ```{r message=FALSE, warning=FALSE}
-# Here we load the dataset. 
+#Load the dataset 
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet.RData'
 load(file=url(link))
 
-# Then, we call the Ggplot2 library. If Ggplot2 has not been installed yet, go to the bottom right quadrant of your screen, click install, then select ggplot2 
+#Call the GGPLOT2 library. If GGPLOT2 has not been installed yet, go to the bottom right quadrant of your screen, select "Packages", click install, then select ggplot2 
 library(ggplot2)
 
-# We create a box plot for each ISP, illustrating the ranges of their dowload speeds. 
+#Create a box plot for each ISP, illustrating the ranges of their dowload speeds 
 box1 = ggplot(Internet, aes(x = ISP, y=Download.Speed))
 
-# We add information regarding the colors of the plot, and then flip it so the axes are reversed. 
+#Add information regarding the colors of the plot, and then flip it so the axes are reversed 
 box2 = box1 + geom_boxplot(color='black',fill='white',
                            outlier.color='black',
                            outlier.size=2) + coord_flip()
                            
-# Here, we add a title, caption, and change the labels on each axis. 
+#Add a title, caption, and change the labels on each axis. 
 box3 = box2 + labs(title='Wave provides highest range of download speeds', subtitle = 'Stevenson, WA',
                    y = 'Download Speed (Megabytes/Second)',
                    x = NULL,
                    caption = 'Source: Stevenson Business and Organization Internet Survey, 2018 
                    Note: Wave Outlier of 500 Mbps Omitteed')
 
-# Then, we format the location, size, color, and type style of each text element. 
+#Format the location, size, color, and type style of each text element 
 box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     plot.title=(element_text(face='bold',
                                             size=15,
@@ -137,30 +139,33 @@ box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     axis.ticks.y=element_blank(),
                     axis.line.x=element_line(color='black'))
 
-# Finally, we change the scale of each axis so that we show the exact number of tick marks that we'd like. 
+#Change the scale of each axis so that we show the exact number of tick marks that we'd like 
 box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
                                          limits=c(0,100)) + scale_x_discrete(limits=c('Wave','GorgeNet','CenturyLink'))
 
-# Then, we "print" the vizualization. 
+#"Print" the vizualization 
 box5
 ```
 
+The boxplot shows that GorgeNet has the least spread out download speed distribution. It means that there is not a huge variation in download speeds among GorgeNet's customers. In contrast, Wave provides the highest range of download speeds, with some customers receiving less than 10 Mbps and some others more than 50 Mbps. Century Link also has a small download speed range; however, the plot indicates the presence of an outlier.
+
+
 ```{r message=FALSE, warning=FALSE}
-# We created a second box plot for each ISP, illustrating the ranges of their upload speeds. 
+#Create a second box plot for each ISP, illustrating the ranges of their upload speeds 
 box1 = ggplot(Internet, aes(x= ISP, y = Upload.Speed)) 
 
-# We add information regarding the colors of the plot, and then flip it so the axes are reversed. 
+#Add information regarding the colors of the plot, and then flip it so the axes are reversed 
 box2 = box1 + geom_boxplot(color='black',fill='white',
                            outlier.color='black',
                            outlier.size=2) + coord_flip()
 
-# Here, we add a title, caption, and change the labels on each axis.
+#Add a title, caption, and change the labels on each axis
 box3 = box2 + labs(title='Wave provides highest range of upload speeds', subtitle = 'Stevenson, WA',
                    y = 'Upload Speed (Megabytes/Second)',
                    x = NULL,
                    caption = 'Source: Stevenson Business and Organization Internet Survey, 2018')
 
-# Then, we format the location, size, color, and type style of each text element. 
+#Format the location, size, color, and type style of each text element 
 box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     plot.title=(element_text(face='bold',
                                             size=15,
@@ -172,13 +177,16 @@ box4 = box3 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     axis.ticks.y=element_blank(),
                     axis.line.x=element_line(color='black'))
 
-# Finally, we change the scale of each axis so that we show the exact number of tick marks that we'd like. 
+#Change the scale of each axis so that we show the exact number of tick marks that we'd like 
 box5 = box4 + scale_y_continuous(breaks=seq(0,100, 10),
                                          limits=c(0,100)) + scale_x_discrete(limits=c('Wave','GorgeNet','CenturyLink'))
 
-# Then, we "print" the visualization. 
+#"Print" the visualization 
 box5
 ```
+
+The results of this plot are consistent with the previous one. Wave provides the highest range of upload speeds, while Century Link provides the lowest range but there is an outlier. GogeNet also provides a small range of variation in upload speeds. When we compare both plots, we can conclude that, in general, download speeds are higher than upload speeds and, in contrast with the other to ISP, Wave provides a high range of Internet speeds.
+
 
 _____
 
@@ -188,12 +196,14 @@ _____
 
 ### Bivariate plots
 
-For our bivariate plots, we decided to create scatterplots. Scatterplots use dots to represent the values for two different variables. In our case, we wanted to compare customers' subscribed and actual speeds. 
+For our bivariate plots, we decided to create scatterplots. Scatterplots use dots to represent the values for two different variables showing the relationship between them. In our case, we wanted to compare customers' subscribed and actual speeds. 
 
 ##### Research Question
 
 "Which ISP most accurately advertised their download speeds?"
 "Which ISP most accurately advertised their upload speeds?"
+
+We expected to find a linear relationship between both variables, advertised and actual Internet speeds. This means that the advertised speed would correspond to the actual speed provides.
 
 ##### Explanation 
 
@@ -213,47 +223,47 @@ We can create the plots using the following steps. Additionally, notes for each 
 12. Visualize our plot 
 
 ```{r message= FALSE, warning = FALSE}
-# For our second plots, we create a factor, ISP, with specific levels. It is based off the original variable. 
+#Create a factor, ISP, with specific levels. It is based off the original variable 
 ISP <- factor(Internet$ISP)
 str(ISP)
 levels(ISP)
 
-# Then, we create a dataframe with just the factors that we are concerned with in these plots. It contains information for all of the ISPs. 
+#Create a dataframe with just the factors that we are concerned with in these plots. It contains information for all of the ISPs 
 df1 <- data.frame(ISP, Internet$Subscribed.Speed, Internet$Download.Speed, Internet$Upload.Speed)
 names(df1) <- c("ISP", "Subscribed", "Download", "Upload")
 
-# Next, we subsetted the data to only include Wave, CenturyLink, and GorgeNet. 
+#Subset the data to only include Wave, CenturyLink, and GorgeNet 
 df2 <- subset(df1, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
 
-# We then created a base plot of Subscribed Speeds versus Upload Speeds. 
+#Create a base plot of Subscribed Speeds versus Upload Speeds 
 base = ggplot(df2, aes(x=Subscribed, y=Upload))
 
-# We added a scatterplot layer. 
+#Add a scatterplot layer
 box1 = base + geom_point()
 
-# Then, a reference line that represents the subscribed speeds. 
+#Add a reference line that represents the subscribed speeds 
 box2 = box1 + geom_abline(a=0,b=45,lty=2,lwd=0.5, alpha = 0.5)
 
-# We used the command facet wrap to separate the plot into three plots, one for each ISP. 
+#Use the command facet wrap to separate the plot into three plots, one for each ISP 
 box3 = box2 + facet_wrap( ~ ISP ,nrow = 1)
 
-# Then, we added a scale for the y axis and a scale for the x axis. 
+#Add a scale for the y axis and a scale for the x axis. 
 box4 = box3 + scale_y_continuous(breaks=c(0,0,40,60,80,100,120),
                                  limits = c(0, 120))
 
 box5 = box4 + scale_x_continuous(breaks=c(0,30,60,90,120,150),
                                  limits = c(0, 150))
 
-# We coded for the title. 
+#Code for the title. 
 Title = 'GorgeNet Provides the Most Accurate Advertised Upload Speeds'
 
-# We added the title, subtitle, x-axis label, y-axis label, and the caption. 
+#Add the title, subtitle, x-axis label, y-axis label, and the caption. 
 box6 = box5 + labs(title=Title, subtitle = 'Stevenson, WA',
                    x= 'Suscribed Speed (Megabytes/Second)',
                    y = 'Upload Speed (Megabytes/Second)',
                    caption='Source: Stevenson Business and Organization Internet Survey,2018') + theme_bw()
 
-# We formatted for each text element, as before. 
+#Format each text element, as before 
 box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     plot.title=(element_text(face='bold',
                                             size=15,
@@ -265,7 +275,7 @@ box7 = box6 + theme(plot.margin=unit(c(1,1,.5,.5),'cm'),
                     axis.line.x=element_line(color='black'),
                     axis.text=element_text(size=8))
 
-# Finally, we "printed" the faceted scatterplot.
+#Print the faceted scatterplot
 box7
 ```
 
@@ -317,19 +327,21 @@ _____
 <a id='part4'></a>
 
 ### Multivariate Plots
-We created two types of multivariate plots, a dot and whisker plot and a heatmap. 
+We created two types of multivariate plots, a dot and whisker plot and a correlation plot.
 
 Dot and Whisker Plot - This plot describes two models of regressions. The first model determines whether actual upload and download speeds affect customer's satisfaction with speed. 
 
-Heatmap - 
+Correlation Plot - This plot looks at the relationship between overall satisfaction and other explanatory variables
 
 ##### Research Question
-1) Is there a relationship between customers' satisfaction with the speed of their internet and their experienced uplaod and download speeds?
-2) 
+1) Are higher download and upload speeds associated with higher levels of satisfaction?
+2) Does subscribed speed, download speed, and upload speed have a positive or negative effect on satisfaction, and what is the magnitude of that effect?
 
-##### Explanation 
+
+#####Explanation: Dot and Whisker Plots
 
 We can create the dot and whisker plot using the following steps. Additionally, notes for each of the steps are included in the code. 
+
 1. Load the data 
 2. Call dotwhisker, broom, and dplyr from library 
 3. Create the first model of regression with the relevant variables (Download.Speed and Upload.Speed regressed onto Satisfaction.Speed)
@@ -340,7 +352,7 @@ We can create the dot and whisker plot using the following steps. Additionally, 
 8. Visualize our plot  
 
 ```{r echo=FALSE, message=FALSE}
-# loading the data source and opening libraries
+#Load the data source and open the Ggplot library
 link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
 load(file=url(link))
 library(ggplot2)
@@ -348,16 +360,16 @@ library(ggplot2)
 
 ```{r message= FALSE, warning = FALSE}
 
-# Here, we called three libraries that would help us make dot and whisker plots as well as 
+#Call three libraries that would help us make dot and whisker plots as well as 
 library(dotwhisker)
 library(broom)
 library(dplyr)
 
-# We created the first model of regression for Download and Upload Speeds on Satisfaction with Speed
+#Create the first model of regression for Download and Upload Speeds on Satisfaction with Speed
 model1=lm(Satisfaction.Speed~Download.Speed+Upload.Speed,data=Internet2[,-1])
 summary(model1)
 
-# Here we tidied up and mutated the model of regression so thatwe add a column, "model," with the values of Model 1. 
+#Tidy up and mutate the model of regression so thatwe add a column, "model," with the values of Model 1. 
 model1_t = tidy(model1) %>% mutate(model = "Model 1") %>%
    relabel_predictors(Upload.Speed = "Upload",
                      Download.Speed = "Download",
@@ -365,11 +377,11 @@ model1_t = tidy(model1) %>% mutate(model = "Model 1") %>%
 ```
 
 ```{r message= FALSE, warning = FALSE}
-# We then created a second model of regression, this time with a fourth variable: Subscribed Speeds. 
+#Create a second model of regression, this time with a fourth variable: Subscribed Speeds. 
 model2=lm(Satisfaction.Speed~Download.Speed+Upload.Speed+Subscribed.Speed,data=Internet2[,-1])
 summary(model2)
 
-# We tidied up and mutated the second model of regression to have a column called "model," with values of "Model 2"
+#Tidy up and mutate the second model of regression to have a column called "model," with values of "Model 2"
 model2_t <- tidy(model2) %>% mutate(model = "Model 2") %>%
    relabel_predictors(Upload.Speed = "Upload",
                      Download.Speed = "Download",
@@ -377,12 +389,12 @@ model2_t <- tidy(model2) %>% mutate(model = "Model 2") %>%
 ```
 
 ```{r message= FALSE, warning = FALSE}
-# Here we combined all the models 
+#Combine all the models 
 allModels=rbind(model1_t, model2_t)
 ```
 
 ```{r message= FALSE, warning = FALSE}
-# Here we plot the coefficients and their confidence intervals for all models and add or change theme/text elements 
+#Plot the coefficients and their confidence intervals for all models and add or change theme/text elements 
 dwplot(allModels) + 
   geom_vline(xintercept = 0, 
                colour = "grey 50", 
@@ -409,64 +421,92 @@ Download, Upload, and Subscribed Speed",
 ### Findings for Multivariate Plot of Regressions
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
 
+####Explanation: Correlation Plots
+Now that we've seen that broadband speeds are not necessarily correlated with download speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
 
-```{r message= FALSE, warning = FALSE}
-##Heatmap
 
-library(scales)
-library(ggplot2)
+```{r}
+#The first step is to create a new dataframe with the variables of interest
 
-#loading data
-link='https://github.com/marcevl/Team-Assignments/raw/master/Internet2.RData'
-load(file=url(link))
+#Add data to dataframe and removing outlier observation in row 3
+df1 <- Internet2[-3,]
 
-#changing download speed to a variable from 0-1
-Internet2$Download.Speed.Rescaled <- rescale(Internet2$Download.Speed)
-
-#adding data to data frame
-df1 <- Internet2
-
-#removing obervation with outlier
-df1 <- df1[-3,]
-
-#removing unnecessary variables from heatmap data frame
-df.heatmap <- df1[c(2,6,10,40)]
-
-#removing ISPs without many observations
-df.heatmap <- subset(df.heatmap, ISP %in% c("Wave", "CenturyLink", "GorgeNet"))
-
-#plotting heat map
-heat1 = ggplot(data = df.heatmap, aes(x = Satisfaction.Speed, y = ISP)) +
-  geom_tile(aes(fill = Download.Speed.Rescaled))
-
-heat1 = heat1 + labs(title='Satisfaction with ISP not related with Download Speed',
-            y=NULL,
-            x='Satisfaction rating',
-            caption='Source: Stevenson Business and Organization Internet Survey, 2018',
-            fill='Range of \nDownload Speeds')
-
-heat2 = heat1 + theme(plot.margin=unit(c(.5,1,1,1),'cm'),
-                    plot.title=(element_text(face='bold',
-                                            size=15,
-                                            hjust=0,
-                                margin=unit(c(0,0,.5,0),'cm'))),
-                    plot.subtitle = (element_text(hjust = 0.5, vjust = 2)),
-                    plot.caption=element_text(size=8, hjust=2, vjust = -1),
-                    legend.text=element_blank(),
-                    legend.background=element_rect(linetype='solid',
-                                                   color='black'),
-                    panel.background=element_rect(fill='white'),
-                    text=element_text(color='black'),
-                    axis.line.y=element_line(color = 'black'),
-                    axis.line.x=element_line(color='black'),
-                    axis.ticks=element_blank(),
-                    axis.text=element_text(size=11))
-
-heat2 + scale_fill_gradient(low='lightblue',high='navy',
-                            guide_colorbar(reverse=TRUE,
-                                           title='Download 
-Speed'))
+#Add relevant variables to new dataframe
+df.corr <- df1[,c('ISP','Cost','Subscribed.Speed','Download.Speed','Upload.Speed', 'Satisfaction.Speed', 'Satisfaction.Price','Satisfaction.Reliability','Satisfaction.Customer.Service','Satisfaction.Overall','Ease.Streaming','Ease.Downloading','Speed.Difficulty')]
 ```
+
+```{r}
+#We need to convert the values for satisfaction ('Dissatisfied','Satisfied', etc.), cost, and ease ('Easy','Difficult', etc.)  into numeric factors so we can plot them compare them to each other
+df.corr$Cost <- as.integer(as.factor(df.corr$Cost))
+df.corr$Satisfaction.Price <- as.integer(as.factor(df.corr$Satisfaction.Price))
+df.corr$Satisfaction.Reliability <- as.integer(as.factor(df.corr$Satisfaction.Reliability))
+df.corr$Satisfaction.Customer.Service <- as.integer(as.factor(df.corr$Satisfaction.Customer.Service))
+df.corr$Satisfaction.Overall <- as.integer(as.factor(df.corr$Satisfaction.Overall))
+df.corr$Ease.Streaming <- as.integer(as.factor(df.corr$Ease.Streaming))
+df.corr$Ease.Downloading <- as.integer(as.factor(df.corr$Ease.Downloading))
+df.corr$Speed.Difficulty <- as.integer(as.factor(df.corr$Speed.Difficulty))
+
+```
+
+Now we can plot this new dataframe (df.corr)
+
+```{r warning=FALSE, message=FALSE}
+#Call up the appropriate library
+library(GGally) 
+
+#Visualize the data onto a correlation plot
+corrplot = ggcorr(df.corr[,-1], # all but the first column
+       hjust = 0.9,# distance to plot (diagonal)
+       size=3, # font size
+       layout.exp=3, # width so that variable names are shown
+       low = 'red',high = 'blue') # color scale
+
+#Add a title and caption
+corrplot1 = corrplot + labs(title='Correlation Plot for Broadband Satisfaction',
+                   caption='Source: Stevenson Business and Organization Internet Survey, 2018')
+
+#Adjust the theme
+corrplot2 = corrplot1 + theme(plot.title=(element_text(face='bold', #Bold title
+                                            size=15, #Font size
+                                            hjust=1)), #title Horizontal alignment
+                              plot.caption=(element_text(hjust=1))) #Caption horizontal alignment
+
+#Print the plot
+corrplot2
+
+
+```
+
+Here, higher positive correlation will apear more blue (1) while negative correlations will appear more organe (-1). While this plot is helpful, the multiple variables that measure satisfaction adds confusion. Instead, we can look at just 'Overall Satisfaction' and see if it is associated with any of the explanatory variables.
+
+```{r}
+#Creating a new dataframe with only one variable measuring satisfaction
+df.corr2 <- df.corr[,c('ISP','Satisfaction.Overall','Cost','Subscribed.Speed','Download.Speed','Upload.Speed','Ease.Streaming','Ease.Downloading')]
+
+#Same steps as the previous plot, but with the new dataframe (df.corr2)
+corrplot3 = ggcorr(df.corr2[,-1],
+       hjust = 0.9,
+       layout.exp=3, 
+       size=3, 
+       low = 'red',high = 'blue') 
+
+corrplot4 = corrplot3 + labs(title='Correlation Plot for Broadband Satisfaction',
+                             subtitle='Overall Satisfaction Only',
+                   caption='Source: Stevenson Business and Organization Internet Survey, 2018')
+
+corrplot5 = corrplot4 + theme(plot.title=(element_text(face='bold',
+                                            size=15,
+                                            hjust=1)),
+                              plot.subtitle=(element_text(hjust=.6)),
+                              plot.caption=(element_text(hjust=1, vjust = -1)))
+
+corrplot5
+
+
+```
+
+This plot tells us more about the relationship between Satisfaction and the other variables. The cell with the largest negative correlation is the interaction between 'Satisfaction.Overall' and 'Cost'; this indicates that people who pay more for their internet service tend to be less satisfied. The greatest positive correlation is between 'Satisfaction.Overall' and 'Ease.Downloading', which indicates that people who rate the difficulty of downloading lower are more satisfied overall with their ISP.
+
 
 ### Map of Washington State Fixed Broadband Service
 
