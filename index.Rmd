@@ -439,10 +439,20 @@ Download, Upload, and Subscribed Speed",
 
 Because all of the models' confidence intervals overlapped with the value of 0 on the x-axis, we cannot conclude that the coefficients are actually different from 0 and, as a result, neither model identifies a relationship between experienced speeds or subscribed speed and customers' satisfaction with their speed. 
 
-#
-####Explanation: Correlation Plots
 Now that we've seen that broadband speed satisfaction is not necessarily related with download, upload and subscribed speed, we can look at other explanatory variables for relationships. A good way to do this is through a correlation plot.
 
+
+####Explanation: Correlation Plots
+
+We can create the correlation plots using the following steps. Additionally, notes for each of the steps are included in the code. 
+
+1. Create a new dataframe with the relevant variables
+2. Convert non-numeric variables to numeric factors
+3. Call GGally from the library
+4. Create an object with GGally from the new dataframe
+5. Add labels
+6. Adjust the positioning of text
+7. Visualize our plot
 
 ```{r}
 #The first step is to create a new dataframe with the variables of interest
